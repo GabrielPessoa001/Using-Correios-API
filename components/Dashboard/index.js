@@ -25,7 +25,7 @@ class Dashboard extends Component {
   }
 
   cleanState () {
-    this.setState({ conf: "", logradouro: "", complemento: "", bairro: "", localidade: "", uf: "", ddd: "" });
+    this.setState({ conf: "", cep: "", logradouro: "", complemento: "", bairro: "", localidade: "", uf: "", ddd: "" });
   }
 
   search_with_cep () {
@@ -53,8 +53,8 @@ class Dashboard extends Component {
         </Label>
 
         <GroupButtons>
-          <Button value="Pesquisar" type="button" onClick={ this.search_with_cep } />
-          <Button value="Limpar" type="button" onClick={ this.cleanState } />
+          <Button value="Pesquisar" type="submit" onClick={ this.search_with_cep } />
+          <Button value="Limpar" type="submit" onClick={ this.cleanState } />
         </GroupButtons>
 
         <Card>
