@@ -1,10 +1,10 @@
-import { Container } from './style';
+import { Container, Title } from './style';
 
 function Dashboard () {
   return (
     <>
       <Container>
-        OI
+        <Title>Seu mundo</Title>
       </Container>
     </>
   )
