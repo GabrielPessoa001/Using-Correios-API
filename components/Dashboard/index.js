@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 
-import { Container, Text } from './style';
+import { Container, Text, Label, Input, Card, Error, Button, GroupButtons } from './style';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -11,16 +11,21 @@ class Dashboard extends Component {
     this.state = { cep: "", logradouro: "", complemento: "", bairro: "", localidade: "", uf: "", ddd: "", conf: "" }
 
     this.handleChange = this.handleChange.bind(this);
+    this.errorState = this.errorState.bind(this);
     this.cleanState = this.cleanState.bind(this);
     this.search_with_cep = this.search_with_cep.bind(this)
   }
 
-  handleChange(event) {
+  handleChange (event) {
     this.setState({ cep: event.target.value });
   }
 
-  cleanState() {
+  errorState () {
     this.setState({ conf: "Not found", logradouro: "", complemento: "", bairro: "", localidade: "", uf: "", ddd: "" });
+  }
+
+  cleanState () {
+    this.setState({ conf: "", logradouro: "", complemento: "", bairro: "", localidade: "", uf: "", ddd: "" });
   }
 
   search_with_cep () {
@@ -36,24 +41,29 @@ class Dashboard extends Component {
       this.setState({ conf: "", logradouro, complemento, bairro, localidade, uf, ddd });
     })
     .catch(() => {
-      this.cleanState()
+      this.errorState()
     })
   }
 
   render() {
     return (
       <Container>
-        <label>
-          CEP:
-          <input value={ this.state.cep } onChange={ this.handleChange } type="text" />
-        </label>
+        <Label>
+          CEP <Input value={ this.state.cep } onChange={ this.handleChange } type="text" />
+        </Label>
 
-        <input value="Pesquisar" type="submit" onClick={ this.search_with_cep } />
+        <GroupButtons>
+          <Button value="Pesquisar" type="button" onClick={ this.search_with_cep } />
+          <Button value="Limpar" type="button" onClick={ this.cleanState } />
+        </GroupButtons>
 
-        <Text>UF: { this.state.uf }</Text>
-        <Text>Localidade: { this.state.localidade }</Text>
-        <Text>Bairro: { this.state.bairro }</Text>
-        <Text>CONF: { this.state.conf }</Text>
+        <Card>
+          <Text>UF: { this.state.uf }</Text>
+          <Text>Localidade: { this.state.localidade }</Text>
+          <Text>Bairro: { this.state.bairro }</Text>
+        </Card>
+
+        { this.state.conf ? <Error>O CEP não foi encontrado</Error> : <div></div> }
       </Container>
     )
   }
