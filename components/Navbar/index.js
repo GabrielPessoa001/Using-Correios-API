@@ -1,13 +1,18 @@
+import Link from 'next/link'
+
 import { Container, Title } from './style';
 
-function Dashboard () {
+function Navbar () {
   return (
     <>
       <Container>
         <Title>Seu mundo</Title>
+
+        <Link href="/cep"><a>Home</a></Link>
+        <Link href="/endereco"><a>Home</a></Link>
       </Container>
     </>
   )
 }
 
-export default Dashboard;
+export default Navbar;
