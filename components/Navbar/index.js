@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { Container, Title } from './style';
+import { Container, GroupButtons, Title } from './style';
 
 function Navbar () {
   return (
@@ -8,8 +8,10 @@ function Navbar () {
       <Container>
         <Title>Seu mundo</Title>
 
-        <Link href="/cep"><a>Home</a></Link>
-        <Link href="/endereco"><a>Home</a></Link>
+        <GroupButtons>
+          <Link href="/cep"><a>CEP</a></Link>
+          <Link href="/endereco"><a>Endereço</a></Link>
+        </GroupButtons>
       </Container>
     </>
   )

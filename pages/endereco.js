@@ -1,11 +1,11 @@
-import Dashboard from '../components/Dashboard';
 import Navbar from '../components/Navbar';
+import SearchEndereco from '../components/Endereco';
 
-export default function Home() {
+export default function Endereco () {
   return (
     <div>
       <Navbar />
-      <Dashboard />
+      <SearchEndereco />
     </div>
   )
 }
