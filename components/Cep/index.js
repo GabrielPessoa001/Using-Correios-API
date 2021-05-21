@@ -31,7 +31,7 @@ const Cep = () => {
     setConf('Not found')
   }
   
-  async function search_with_cep () {
+  async function searchWithCep () {
     const URL_CEP = `https://viacep.com.br/ws/${ cep }/json`
 
     let response;
@@ -61,7 +61,7 @@ const Cep = () => {
       </Label>
 
       <GroupButtons>
-        <Button value="Pesquisar" type="submit" onClick={ search_with_cep } />
+        <Button value="Pesquisar" type="submit" onClick={ searchWithCep } />
         <Button value="Limpar" type="submit" onClick={ cleanState } />
       </GroupButtons>
 
