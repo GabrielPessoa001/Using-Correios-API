@@ -6,8 +6,6 @@ import { Container, Text, Label, Input, Card, Error, Button, GroupButtons } from
 
 const Cep = () => {
   const [ cep, setCep ] = useState('');
-  const [ logradouro, setLogradouro ] = useState('')
-  const [ complemento, setComplemento ] = useState('')
   const [ localidade, setLocalidade ] = useState('')
   const [ bairro, setBairro ] = useState('')
   const [ uf, setUf ] = useState('')
@@ -16,8 +14,6 @@ const Cep = () => {
 
   function cleanState () {
     setCep('')
-    setLogradouro('')
-    setComplemento('')
     setLocalidade('')
     setBairro('')
     setUf('')
@@ -39,10 +35,8 @@ const Cep = () => {
     try {
       response = await axios.get(URL_CEP);
 
-      let { logradouro, complemento, bairro, localidade, uf, ddd } = response.data;
+      let { bairro, localidade, uf, ddd } = response.data;
 
-      setLogradouro(logradouro)
-      setComplemento(complemento)
       setBairro(bairro)
       setLocalidade(localidade)
       setUf(uf)
@@ -69,6 +63,7 @@ const Cep = () => {
         <Text>UF: { uf }</Text>
         <Text>Localidade: { localidade }</Text>
         <Text>Bairro: { bairro }</Text>
+        <Text>DDD: { ddd }</Text>
       </Card>
 
       { conf ? <Error>O CEP não foi encontrado</Error> : <div>BAU</div> }

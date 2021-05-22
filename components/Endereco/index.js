@@ -5,20 +5,16 @@ import axios from 'axios';
 import { Container, Input, Label, Error, Text, Card } from './style';
 
 const Endereco = () => {
-  const [ cep, setCep ] = useState('');
+  const [ ceps = [], setCeps ] = useState([])
   const [ logradouro, setLogradouro ] = useState('')
-  const [ complemento, setComplemento ] = useState('')
   const [ localidade, setLocalidade ] = useState('')
-  const [ bairro, setBairro ] = useState('')
   const [ uf, setUf ] = useState('')
   const [ conf, setConf ] = useState('')
 
   function cleanState () {
-    setCep('')
+    setCeps([])
     setLogradouro('')
-    setComplemento('')
     setLocalidade('')
-    setBairro('')
     setUf('')
     setConf('')
   }
@@ -32,20 +28,12 @@ const Endereco = () => {
   async function searchWithEndereco () {
     const URL_ENDERECO = `https://viacep.com.br/ws/${ uf }/${ localidade }/${ logradouro }/json/`;
 
-    console.log(URL_ENDERECO)
-
     let response;
     
     try {
       response = await axios.get(URL_ENDERECO);
 
-      console.log(response.data)
-
-      let { cep, complemento, bairro } = response.data;
-
-      setCep(cep)
-      setComplemento(complemento)
-      setBairro(bairro)
+      setCeps(response.data)
     } catch (e) {
       errorState
 
@@ -70,8 +58,7 @@ const Endereco = () => {
       <Input value="Pesquisar" type="submit" onClick={ searchWithEndereco } />
 
       <Card>
-        <Text>Cep: { cep }</Text>
-        <Text>Bairro: { bairro }</Text>
+        { ceps ? ceps.map(c => (<div>{ c.bairro } - { c.cep }</div>)) : <div>NADA</div> }
       </Card>
 
       { conf ? <Error>O CEP não foi encontrado</Error> : <div>BAU</div> }
