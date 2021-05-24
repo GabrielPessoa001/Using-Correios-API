@@ -6,18 +6,21 @@ export const Container = styled.div`
 
   align-items: center;
   justify-content: center;
+
+  height: 80vh;
 `;
 
 export const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  padding: 10px 0 10px 10px;
-
-  border: solid 5px black;
-  border-radius: 5px;
+  margin: 5px;
 
   width: 90%;
+
+  justify-content: start;
+
+  padding: 20px 10px;
+
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.4) !important;
+  border-radius: 5px;
 
   margin-top: 20px;
 `;
@@ -72,4 +75,8 @@ export const GroupButtons = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+`;
+
+export const NoneDiv = styled.div`
+  margin-top: 15px;
 `;

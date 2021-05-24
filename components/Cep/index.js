@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 
 import axios from 'axios';
 
-import { Container, Text, Label, Input, Card, Error, Button, GroupButtons } from './style';
+import { Container,
+         Text, 
+         Label, 
+         Input, 
+         Card,
+         Error, 
+         Button, 
+         GroupButtons,
+         NoneDiv } from './style';
 
 const Cep = () => {
   const [ cep, setCep ] = useState('');
@@ -66,7 +74,7 @@ const Cep = () => {
         <Text>DDD: { ddd }</Text>
       </Card>
 
-      { conf ? <Error>O CEP não foi encontrado</Error> : <div>BAU</div> }
+      { conf ? <Error>O CEP não foi encontrado</Error> : <NoneDiv>BAU</NoneDiv> }
     </Container>
   )
 }

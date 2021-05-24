@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
-import { Container, Input, Label, Error, Text, Card } from './style';
+import { Container,
+         Input, 
+         Label, 
+         Error, 
+         Card, 
+         Button, 
+         GroupButtons, 
+         GroupCards,
+         DataCard,
+         Select,
+         Option,
+         NoneDiv } from './style';
 
 const Endereco = () => {
   const [ ceps = [], setCeps ] = useState([])
@@ -10,6 +21,18 @@ const Endereco = () => {
   const [ localidade, setLocalidade ] = useState('')
   const [ uf, setUf ] = useState('')
   const [ conf, setConf ] = useState('')
+
+  const [ myUfs, setMyUfs ] = useState([])
+
+  useEffect(() => {
+    async function fetchMyUfs () {
+      let response = await axios.get('api/uf')
+  
+      setMyUfs(response.data)
+    }
+  
+    fetchMyUfs()
+  }, [])
 
   function cleanState () {
     setCeps([])
@@ -44,7 +67,15 @@ const Endereco = () => {
   return (
     <Container>
       <Label>
-        UF <Input value={ uf } onChange={ e => setUf(e.target.value) } />
+        UF  <Select onChange={ e => setUf(e.target.value) }>
+              {
+                myUfs 
+                ?
+                myUfs.map(c => <Option key={ c.uf } value={ c.uf }>{ c.name }</Option> )
+                :
+                <NoneDiv></NoneDiv>
+              }
+            </Select>
       </Label>
 
       <Label>
@@ -55,13 +86,25 @@ const Endereco = () => {
         Logradouro <Input value={ logradouro } onChange={ e => setLogradouro(e.target.value) } />
       </Label>
 
-      <Input value="Pesquisar" type="submit" onClick={ searchWithEndereco } />
+      <GroupButtons>
+        <Button value="Pesquisar" type="submit" onClick={ searchWithEndereco } />
+        <Button value="Limpar" type="submit" onClick={ cleanState } />
+      </GroupButtons>
 
-      <Card>
-        { ceps ? ceps.map(c => (<div>{ c.bairro } - { c.cep }</div>)) : <div>NADA</div> }
-      </Card>
+      <GroupCards>
+        {
+          ceps
+          ?
+          ceps.map(c => ( <Card key={ c.cep }>
+            <DataCard>{ c.bairro }</DataCard>
+            <DataCard>{ c.cep }</DataCard></Card>
+          ))
+          :
+          <NoneDiv>NADA</NoneDiv>
+        }
+      </GroupCards>
 
-      { conf ? <Error>O CEP não foi encontrado</Error> : <div>BAU</div> }
+      { conf ? <Error>O CEP não foi encontrado</Error> : <NoneDiv>BAU</NoneDiv> }
     </Container>
   )
 }

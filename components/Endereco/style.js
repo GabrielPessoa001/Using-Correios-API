@@ -8,20 +8,6 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  padding: 10px 0 10px 10px;
-
-  border: solid 5px black;
-  border-radius: 5px;
-
-  width: 90%;
-
-  margin-top: 20px;
-`;
-
 export const Text = styled.h5`
   color: black;
 
@@ -51,4 +37,51 @@ export const Label = styled.label``;
 
 export const Input = styled.input`
   margin: 5px 0;
+`;
+
+export const Button = styled.input`
+  width: 40%;
+  margin-top: 5px;
+`;
+
+export const GroupButtons = styled.div`
+  width: 25%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const GroupCards = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  width: 100%;
+`;
+
+export const Card = styled.div`
+  flex: 1 0 21%;
+  margin: 5px;
+
+  text-align: center;
+  align-items: center;
+
+  padding: 20px 0px;
+
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.4) !important;
+  border-radius: 5px;
+
+  margin-top: 20px;
+`;
+
+export const DataCard = styled.h4`
+  margin: 0 !important;
+`;
+
+export const Select = styled.select``;
+
+export const Option = styled.option``;
+
+export const NoneDiv = styled.div`
+  margin-top: 15px;
 `;
