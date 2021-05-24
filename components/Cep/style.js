@@ -7,7 +7,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  height: 80vh;
+  height: 70vh;
 `;
 
 export const Card = styled.div`

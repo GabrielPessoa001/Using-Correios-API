@@ -13,7 +13,8 @@ import { Container,
          DataCard,
          Select,
          Option,
-         NoneDiv } from './style';
+         NoneDiv,
+         MyForm } from './style';
 
 const Endereco = () => {
   const [ ceps = [], setCeps ] = useState([])
@@ -66,25 +67,30 @@ const Endereco = () => {
 
   return (
     <Container>
-      <Label>
-        UF  <Select onChange={ e => setUf(e.target.value) }>
-              {
-                myUfs 
-                ?
-                myUfs.map(c => <Option key={ c.uf } value={ c.uf }>{ c.name }</Option> )
-                :
-                <NoneDiv></NoneDiv>
-              }
-            </Select>
-      </Label>
+      <MyForm>
+        <Label>
+          UF  <Select onChange={ e => setUf(e.target.value) }>
+                <Option key="NONE" value="NONE"> Escolha uma opção </Option>
+                {
+                  myUfs 
+                  ?
+                  myUfs.map(c => <Option key={ c.uf } value={ c.uf }>{ c.name }</Option> )
+                  :
+                  <NoneDiv></NoneDiv>
+                }
+              </Select>
+        </Label>
 
-      <Label>
-        Localidade <Input value={ localidade } onChange={ e => setLocalidade(e.target.value) } />
-      </Label>
+        <Label>
+          Localidade <Input value={ localidade } onChange={ e => setLocalidade(e.target.value) } />
+        </Label>
+        
+        <br/>
 
-      <Label>
-        Logradouro <Input value={ logradouro } onChange={ e => setLogradouro(e.target.value) } />
-      </Label>
+        <Label>
+          Logradouro <Input value={ logradouro } onChange={ e => setLogradouro(e.target.value) } />
+        </Label>
+      </MyForm>
 
       <GroupButtons>
         <Button value="Pesquisar" type="submit" onClick={ searchWithEndereco } />
@@ -104,7 +110,7 @@ const Endereco = () => {
         }
       </GroupCards>
 
-      { conf ? <Error>O CEP não foi encontrado</Error> : <NoneDiv>BAU</NoneDiv> }
+      { conf ? <Error>O CEP não foi encontrado</Error> : <NoneDiv></NoneDiv> }
     </Container>
   )
 }

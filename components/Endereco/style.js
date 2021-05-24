@@ -33,6 +33,14 @@ export const Error = styled.div`
   padding: 15px 0;
 `;
 
+export const MyForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+`;
+
 export const Label = styled.label``;
 
 export const Input = styled.input`
